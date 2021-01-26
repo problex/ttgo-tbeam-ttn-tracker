@@ -296,6 +296,11 @@ void ttn_join() {
             // set sub band for AU915
             // https://github.com/TheThingsNetwork/gateway-conf/blob/master/AU-global_conf.json
             LMIC_selectSubBand(1);
+        #elif defined(CFG_as923)
+            // Set up the channels used in your country. Only two are defined by default,
+            // and they cannot be changed.  Use BAND_CENTI to indicate 1% duty cycle.
+            LMIC_setupChannel(0, 923200000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);
+            LMIC_setupChannel(1, 923400000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);
         
         #endif
 
